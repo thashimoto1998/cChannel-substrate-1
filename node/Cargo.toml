@@ -16,6 +16,8 @@ log = '0.4.8'
 parking_lot = '0.10.0'
 structopt = '0.3.8'
 jsonrpc-core = "14.0.3"
+jsonrpc-core-client = "14.0.3"
+jsonrpc-derive = "14.0.3"
 
 [dependencies.celer-runtime]
 path = '../runtime'
@@ -31,7 +33,6 @@ git = 'https://github.com/paritytech/substrate.git'
 tag = 'v2.0.0-rc6'
 version = '0.8.0-rc6'
 
-
 [dependencies.sc-client-api]
 git = 'https://github.com/paritytech/substrate.git'
 tag = 'v2.0.0-rc6'
@@ -39,7 +40,6 @@ version = '2.0.0-rc6'
 
 [dependencies.sc-consensus]
 git = 'https://github.com/paritytech/substrate.git'
-
 tag = 'v2.0.0-rc6'
 version = '0.8.0-rc6'
 
@@ -148,6 +148,10 @@ version = '2.0.0-rc6'
 git = 'https://github.com/paritytech/substrate.git'
 tag = 'v2.0.0-rc6'
 version = '2.0.0-rc6'
+
+[dependencies.celer-pay-module-rpc]
+path = '../pallets/celer-pay/rpc/'
+version = '0.8.7'
 
 [build-dependencies.substrate-build-script-utils]
 git = 'https://github.com/paritytech/substrate.git'

@@ -10,7 +10,6 @@ use sc_executor::native_executor_instance;
 pub use sc_executor::NativeExecutor;
 use sp_consensus_aura::sr25519::{AuthorityPair as AuraPair};
 use sc_finality_grandpa::{FinalityProofProvider as GrandpaFinalityProofProvider, SharedVoterState};
-use crate::rpc;
 use sp_std::boxed::Box;
 
 // Our native executor instance.
@@ -117,13 +116,13 @@ pub fn new_full(config: Configuration) -> Result<TaskManager, ServiceError> {
 		let pool = transaction_pool.clone();
 
 		Box::new(move |deny_unsafe, _| {
-			let deps = rpc::FullDeps {
+			let deps = crate::rpc::FullDeps {
 				client: client.clone(),
 				pool: pool.clone(),
 				deny_unsafe,
 			};
 
-			rpc::create_full(deps)
+			crate::rpc::create_full(deps)
 		})
 	};
 

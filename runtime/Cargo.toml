@@ -192,39 +192,44 @@ package = 'pallet-transaction-payment-rpc-runtime-api'
 tag = 'v2.0.0-rc6'
 version = '2.0.0-rc6'
 
+[dependencies.celer-pay-module-rpc-runtime-api]
+default-features = false
+package = 'celer-pay-module-rpc-runtime-api'
+path = '../pallets/celer-pay/rpc/runtime-api'
+version = '0.8.7'
+
 [features]
-default = ['std']
+default = ["std"]
 std = [
-    'pallet-aura/std',
-    'pallet-balances/std',
-    'codec/std',
-    'frame-executive/std',
-    'frame-support/std',
-    'pallet-grandpa/std',
-    'pallet-randomness-collective-flip/std',
-    'serde',
-    'sp-api/std',
-    'sp-block-builder/std',
-    'sp-consensus-aura/std',
-    'sp-core/std',
-    'sp-inherents/std',
-    'sp-io/std',
-    'sp-offchain/std',
-    'sp-runtime/std',
-    'sp-session/std',
-    'sp-std/std',
-    'sp-transaction-pool/std',
-    'sp-version/std',
-    'pallet-sudo/std',
-    'frame-system/std',
-    'pallet-timestamp/std',
-    'pallet-transaction-payment/std',
-    'pallet-randomness-collective-flip/std',
-    'frame-system-rpc-runtime-api/std',
-    'pallet-transaction-payment-rpc-runtime-api/std',
-    'celer-pay/std',
-    'mock-boolean-condition/std',
-    'mock-numeric-condition/std',
+	"codec/std",
+	"frame-executive/std",
+	"frame-support/std",
+	"pallet-aura/std",
+	"pallet-balances/std",
+	"pallet-grandpa/std",
+	"pallet-randomness-collective-flip/std",
+	"pallet-sudo/std",
+	"pallet-timestamp/std",
+	"pallet-transaction-payment/std",
+  "pallet-transaction-payment-rpc-runtime-api/std",
+	"serde",
+	"sp-api/std",
+	"sp-block-builder/std",
+	"sp-consensus-aura/std",
+	"sp-core/std",
+	"sp-inherents/std",
+	"sp-offchain/std",
+	"sp-runtime/std",
+	"sp-session/std",
+	"sp-std/std",
+	"sp-transaction-pool/std",
+	"sp-version/std",
+	"frame-system/std",
+  "frame-system-rpc-runtime-api/std",
+	"celer-pay/std",
+    "mock-boolean-condition/std",
+    "mock-numeric-condition/std",
+    "celer-pay-module-rpc-runtime-api/std",
 ]
 
 [build-dependencies.wasm-builder-runner]

@@ -18,6 +18,7 @@ std = [
 	"pallet-balances/std",
 	"pallet-timestamp/std",
 	"mock-numeric-condition/std",
+	"celer-pay-module-rpc-runtime-api/std",
 ]
 
 [package.metadata.docs.rs]
@@ -92,6 +93,10 @@ default-features = false
 tag = 'v2.0.0-rc6'
 version = '2.0.0-rc6'
 
+[dependencies.celer-pay-module-rpc-runtime-api]
+path = './rpc/runtime-api'
+version = '0.8.7'
+
 [dependencies.mock-numeric-condition]
 default-features = false
 path = '../mock-numeric-condition'
@@ -103,3 +108,4 @@ default-features = false
 path = '../mock-boolean-condition'
 package = 'mock-boolean-condition'
 version = '0.8.7'
+

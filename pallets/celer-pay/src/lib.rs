@@ -57,7 +57,7 @@ decl_storage! {
     trait Store for Module<T: Trait> as CelerLedger {
         /// Celer Ledger
         pub ChannelStatusNums get(fn channel_status_nums):
-            map hasher(blake2_128_concat) u8 => Option<u8>;
+                map hasher(blake2_128_concat) u8 => Option<u8>;
 
         pub ChannelMap get(fn channel_map):
                 map hasher(blake2_128_concat) T::Hash => Option<ChannelOf<T>>;
@@ -978,12 +978,12 @@ impl<T: Trait> Module<T> {
     ///
     /// Parameter:
     /// `channel_id`: Id of channel
-    pub fn get_channel_status(channel_id: T::Hash) -> ChannelStatus {
+    pub fn get_channel_status(channel_id: T::Hash) -> u8 {
         let c = match Self::channel_map(channel_id) {
             Some(channel) => channel,
-            None => return ChannelStatus::Uninitialized,
+            None => return ChannelStatus::Uninitialized as u8,
         };
-        return c.status;
+        return c.status as u8;
     }
 
     /// Return cooperative withdraw seq_num
@@ -1192,11 +1192,11 @@ impl<T: Trait> Module<T> {
         return <ChannelStatusNums>::get(channel_status);
     }
 
-    /// Return balance limit
+    /// Return balance limits
     ///
     /// Parameter:
     /// `channel_id`: Id of channel
-    pub fn get_balance_limit(channel_id: T::Hash) -> Option<BalanceOf<T>> {
+    pub fn get_balance_limits(channel_id: T::Hash) -> Option<BalanceOf<T>> {
         let c = match Self::channel_map(channel_id) {
             Some(channel) => channel,
             None => return None,
@@ -1204,7 +1204,7 @@ impl<T: Trait> Module<T> {
         return c.balance_limits;
     }
 
-    /// Return balanceLimitsEnabled
+    /// Whether balance limits is enable.
     ///
     /// Parameter:
     /// `channel_id`: Id of channel
@@ -1280,11 +1280,11 @@ impl<T: Trait> Module<T> {
         return Some(owners);
     }
 
-    /// Return balance in a given wallet
+    /// Return amount of funds which is deposited into specified wallet
     ///
     /// Parameter:
     /// `wallet_id`: Id of the wallet
-    pub fn get_balance(wallet_id: T::Hash) -> Option<BalanceOf<T>> {
+    pub fn get_wallet_balance(wallet_id: T::Hash) -> Option<BalanceOf<T>> {
         let w: WalletOf<T> = match Self::wallet(wallet_id) {
             Some(wallet) => wallet,
             None => return None,
@@ -1300,20 +1300,20 @@ impl<T: Trait> Module<T> {
         return POOL_ID.into_account();
     }
 
-    /// Return balnce in pooled Pool
+    /// Return amount of funds which is pooled of specified address
     ///
     /// Prameter:
     /// `owner`: the address of query balance of
-    pub fn balance_of(owner: T::AccountId) -> Option<BalanceOf<T>> {
+    pub fn get_pool_balance(owner: T::AccountId) -> Option<BalanceOf<T>> {
         return Self::balances(owner);
     }
 
-    /// Return amount of owner allowed to a spender
+    /// Return amount of funds which owner allowed to a spender
     ///
     /// Parameters:
     /// `owner`: the address which owns the funds
     /// `spender`: the address which will spend the funds
-    pub fn allowance(owner: T::AccountId, spender: T::AccountId) -> Option<BalanceOf<T>> {
+    pub fn get_allowance(owner: T::AccountId, spender: T::AccountId) -> Option<BalanceOf<T>> {
         return Self::allowed(owner, spender);
     }
 
